@@ -1,4 +1,4 @@
-package com.softwareintitute.davis.gareth.minesweeper;
+package com.softwareintitute.rt.minesweeper;
 
 
 public class Tile {

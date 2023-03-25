@@ -1,9 +1,17 @@
-package com.softwareintitute.davis.gareth.minesweeper;
+package com.softwareintitute.rt.minesweeper;
 
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args){
+
+        Game game = new Game();
+
+        game.run();
+
+        game.method();
+
         MinesweeperGrid myGrid = new MinesweeperGrid(5,5,10);
         Scanner scanner = new Scanner(System.in);
         int xCord;
