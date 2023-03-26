@@ -188,7 +188,7 @@ public class MinesweeperGrid {
 
     }
 
-    public String gameOver() {
+    private String gameOver() {
         for (int i = 0; i < this.length; i++) {
             for (int j = 0; j < this.width; j++) {
                 board[i][j].revealTile();
