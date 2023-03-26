@@ -78,11 +78,13 @@ public class Main {
                         if(game.checkIfGameIsWon()){
                             exit = true;
                             System.out.println("Congratulations! You have won the game");
+                            System.out.println("You scored: " +game.getScore());
                         } else if (game.checkIfGameIsOver()) {
                             exit = true;
                             System.out.println("Game Over!");
+                            System.out.println("You scored: " +game.getScore());
                         }
-                        System.out.println("You scored: " +game.getScore());
+
                         System.out.println(board);
 
                     } else if (userChoice == 2) {

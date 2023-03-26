@@ -1,6 +1,5 @@
 package com.softwareintitute.rt.minesweeper.game.data;
 
-import com.softwareintitute.rt.minesweeper.game.data.Tile;
 
 import java.util.*;
 
@@ -127,7 +126,7 @@ public class MinesweeperGrid {
             }
         }
 
-        if (numberOfRevealedTiles - numberOfMines == length * width){
+        if (numberOfRevealedTiles + numberOfMines == length * width){
             return "Congratulations!";
         }
 
