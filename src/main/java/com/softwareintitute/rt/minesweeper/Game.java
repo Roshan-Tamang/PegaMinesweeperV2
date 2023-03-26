@@ -30,13 +30,12 @@ public class Game {
     }
 
 
-    public void start() {
-
+    public String start() {
         int numberOfMines = calculateNumberOfMines();
-
         minesweeperGrid = new MinesweeperGrid(Settings.getBoardLength(), Settings.getBoardWidth(), numberOfMines);
 
 
+        return minesweeperGrid.toString();
     }
 
     private int calculateNumberOfMines() {
@@ -52,9 +51,20 @@ public class Game {
 
     }
 
-    public void takeTurn(int xCord, int YCord) {
-        minesweeperGrid.toString();
+    public String takeTurn(String option, int xCord, int yCord) throws InvalidCoordinate {
 
+
+        if (xCord < 0 || xCord >= Settings.getBoardLength() || yCord < 0 || yCord >= Settings.getBoardWidth()) {
+            throw new InvalidCoordinate();
+        } else {
+            if (option.equals("Reveal")) {
+                minesweeperGrid.revealSquare(xCord, yCord);
+            } else if (option.equals("Flag")) {
+                minesweeperGrid.setFlag(xCord, yCord);
+            }
+
+        }
+       return minesweeperGrid.toString();
     }
 
 }

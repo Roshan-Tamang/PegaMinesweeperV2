@@ -16,19 +16,21 @@ public class Main {
             try {
                 int userInput = getUserInput(game.mainMenu());
 
-
                 switch (userInput) {
-                    case 1:
+                    case 0:
                         playTheGame();
                         break;
-                    case 2:
+                    case 1:
                         changeBoardSize();
                         break;
-                    case 3:
+                    case 2:
                         changeDifficultyLvl();
                         break;
-                    case 4:
+                    case 3:
                         exit = true;
+                        break;
+                    default:
+                        System.out.println("Invalid option! try again!");
                         break;
                 }
 
@@ -44,7 +46,51 @@ public class Main {
 
         Game game = new Game();
 
-        game.start();
+        System.out.println(game.start());
+
+        String board;
+        String messageForX = "Please enter the x coordinate";
+        String messageForY = "Please enter the y coordinate";
+
+        do{
+
+            try {
+                int xCord;
+                int yCord;
+                String choice;
+                int userChoice = getUserInput("Press 1: To reveal a square    Press 2: To flag/unflag a square");
+
+                try {
+
+                    if (userChoice == 1) {
+
+                        xCord = getUserInput(messageForX);
+                        yCord = getUserInput(messageForY);
+
+                        board = game.takeTurn("Reveal", xCord, yCord);
+                        System.out.println(board);
+
+                    } else if (userChoice == 2) {
+
+                        xCord = getUserInput(messageForX);
+                        yCord = getUserInput(messageForY);
+
+                        board = game.takeTurn("Flag", xCord, yCord);
+                        System.out.println(board);
+
+                    } else {
+                        System.out.println("Invalid choice");
+                    }
+
+                }catch (InvalidCoordinate invalidCoordinate){
+                    System.out.println("Invalid input! try again");
+                }
+
+            }catch (InputMismatchException inputMismatchException){
+                System.out.println("Invalid input! try again");
+            }
+
+        }while (true);
 
 
     }

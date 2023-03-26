@@ -124,7 +124,6 @@ public class MinesweeperGrid {
 
     public String setFlag(int xCord, int yCord) {
 
-
         board[xCord][yCord].flagTile();
 
         return this.toString();
