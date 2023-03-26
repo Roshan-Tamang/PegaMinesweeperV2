@@ -79,14 +79,43 @@ public class MinesweeperGrid {
     }
 
     public String revealSquare(int xCord, int yCord) {
-        board[xCord][yCord].revealTile();
-        if (board[xCord][yCord].isABomb()) {
-            gameOver();
-        } else if (board[xCord][yCord].getNumberOfNeighbouringMines() == 0) {
-            revealAdditionalSquares(xCord, yCord);
+
+        String gameMessage = "Continue";
+
+        if (!board[xCord][yCord].isFlagged()) {
+            board[xCord][yCord].revealTile();
+            if (board[xCord][yCord].isABomb()) {
+                gameMessage = gameOver();
+            } else if (board[xCord][yCord].getNumberOfNeighbouringMines() == 0) {
+                revealAdditionalSquares(xCord, yCord);
+            }
         }
 
-        return this.toString();
+        if(gameMessage.equals("Continue")){
+            gameMessage = checkIfGameHasBeenWon();
+        }
+
+        return gameMessage;
+    }
+
+    private String checkIfGameHasBeenWon() {
+
+        int numberOfRevealedTiles = 0;
+
+        for (Tile[] i :
+                board) {
+            for (Tile j : i) {
+                if(j.isRevealed()){
+                    numberOfRevealedTiles++;
+                }
+            }
+        }
+
+        if (numberOfRevealedTiles - numberOfMines == length * width){
+            return "Congratulations!";
+        }
+
+        return "Continue";
     }
 
     private void revealAdditionalSquares(int xCord, int yCord) {
@@ -104,8 +133,8 @@ public class MinesweeperGrid {
             int currentX = Integer.parseInt(String.valueOf(listOfCordsWithZeroNeighbourMines.get(i).charAt(0)));
             int currentY = Integer.parseInt(String.valueOf(listOfCordsWithZeroNeighbourMines.get(i).charAt(1)));
 
-            for (int x = currentX - 1; x <= xCord + 1; x++) {
-                for (int y = currentY - 1; y <= yCord + 1; y++) {
+            for (int x = currentX - 1; x <= currentX + 1; x++) {
+                for (int y = currentY - 1; y <= currentY + 1; y++) {
                     if (x < 0 || y < 0 || x >= length || y >= width) {//checks to see if the tile is out of bounds and we only count when in bounds
 
                     } else if (x == currentX && y == currentY) {//we dont want to count the center square
@@ -122,16 +151,10 @@ public class MinesweeperGrid {
     }
 
 
-    public String setFlag(int xCord, int yCord) {
+    public void setFlag(int xCord, int yCord) {
 
         board[xCord][yCord].flagTile();
 
-        return this.toString();
-    }
-
-    public String winGame() {
-        //todo
-        return this.toString();
     }
 
     public String gameOver() {
@@ -140,6 +163,6 @@ public class MinesweeperGrid {
                 board[i][j].revealTile();
             }
         }
-        return this.toString();
+        return "Game Over!";
     }
 }

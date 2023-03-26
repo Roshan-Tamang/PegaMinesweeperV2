@@ -51,13 +51,14 @@ public class Main {
         String board;
         String messageForX = "Please enter the x coordinate";
         String messageForY = "Please enter the y coordinate";
+        boolean exit = false;
 
         do{
 
             try {
                 int xCord;
                 int yCord;
-                String choice;
+
                 int userChoice = getUserInput("Press 1: To reveal a square    Press 2: To flag/unflag a square");
 
                 try {
@@ -68,6 +69,14 @@ public class Main {
                         yCord = getUserInput(messageForY);
 
                         board = game.takeTurn("Reveal", xCord, yCord);
+                        if(game.checkIfGameIsWon()){
+                            exit = true;
+                            System.out.println("Congratulations! You have won the game");
+                        } else if (game.checkIfGameIsOver()) {
+                            exit = true;
+                            System.out.println("Game Over!");
+                        }
+
                         System.out.println(board);
 
                     } else if (userChoice == 2) {
@@ -79,7 +88,7 @@ public class Main {
                         System.out.println(board);
 
                     } else {
-                        System.out.println("Invalid choice");
+                        System.out.println("Invalid choice! Try again");
                     }
 
                 }catch (InvalidCoordinate invalidCoordinate){
@@ -90,7 +99,8 @@ public class Main {
                 System.out.println("Invalid input! try again");
             }
 
-        }while (true);
+
+        }while (!exit);
 
 
     }
