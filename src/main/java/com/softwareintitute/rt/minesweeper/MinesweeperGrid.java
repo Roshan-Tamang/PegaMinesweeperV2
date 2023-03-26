@@ -83,46 +83,56 @@ public class MinesweeperGrid {
         if (board[xCord][yCord].isABomb()) {
             gameOver();
         } else if (board[xCord][yCord].getNumberOfNeighbouringMines() == 0) {
-            revealSquares(xCord, yCord);
+            revealAdditionalSquares(xCord, yCord);
         }
 
         return this.toString();
     }
 
-    private void revealSquares(int xCord, int yCord) {
+    private void revealAdditionalSquares(int xCord, int yCord) {
 
-        List<String> xsa = new ArrayList<>();
 
-        for (int x = xCord - 1; x <= xCord + 1; x++) {
-            for (int y = yCord - 1; y <= yCord + 1; y++) {
-                if (x < 0 || y < 0 || x >= length || y >= width) {//checks to see if the tile is out of bounds and we only count when in bounds
+        List<String> listOfCordsWithZeroNeighbourMines = new ArrayList<>();
 
-                } else if (x == xCord && y == yCord) {//we dont want to count the center square
 
-                } else if (!board[x][y].isRevealed() && !board[x][y].isABomb()) {
-                    board[x][y].revealTile();
-                    if (board[x][y].getNumberOfNeighbouringMines() == 0) {
-                        xsa.add(String.valueOf(x)+ y);
-                        System.out.println(xsa.get(0));
+        listOfCordsWithZeroNeighbourMines.add(String.valueOf(xCord) + yCord);
+
+
+        for (int i = 0; i < listOfCordsWithZeroNeighbourMines.size(); i++) {
+
+
+            int currentX = Integer.parseInt(String.valueOf(listOfCordsWithZeroNeighbourMines.get(i).charAt(0)));
+            int currentY = Integer.parseInt(String.valueOf(listOfCordsWithZeroNeighbourMines.get(i).charAt(1)));
+
+            for (int x = currentX - 1; x <= xCord + 1; x++) {
+                for (int y = currentY - 1; y <= yCord + 1; y++) {
+                    if (x < 0 || y < 0 || x >= length || y >= width) {//checks to see if the tile is out of bounds and we only count when in bounds
+
+                    } else if (x == currentX && y == currentY) {//we dont want to count the center square
+
+                    } else if (!board[x][y].isRevealed() && !board[x][y].isABomb()) {
+                        board[x][y].revealTile();
+                        if (board[x][y].getNumberOfNeighbouringMines() == 0) {
+                            listOfCordsWithZeroNeighbourMines.add(String.valueOf(x) + y);
+                        }
                     }
                 }
             }
         }
-
-
-        for (String i :
-             xsa) {
-            revealSquares(Integer.parseInt(String.valueOf(i.charAt(0))),Integer.parseInt(String.valueOf(i.charAt(1))));
-        }
     }
 
 
-    public void setFlag() {
-        //todo
+    public String setFlag(int xCord, int yCord) {
+
+
+        board[xCord][yCord].flagTile();
+
+        return this.toString();
     }
 
-    public void winGame() {
+    public String winGame() {
         //todo
+        return this.toString();
     }
 
     public String gameOver() {
