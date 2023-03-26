@@ -155,7 +155,7 @@ public class MinesweeperGrid {
 
                     } else if (x == currentX && y == currentY) {//we dont want to count the center square
 
-                    } else if (!board[x][y].isRevealed() && !board[x][y].isABomb()) {
+                    } else if (!board[x][y].isRevealed() && !board[x][y].isABomb() && !board[x][y].isFlagged()) {
                         board[x][y].revealTile();
                         if (board[x][y].getNumberOfNeighbouringMines() == 0) {
                             listOfCordsWithZeroNeighbourMines.add(String.valueOf(x) + y);
@@ -166,6 +166,21 @@ public class MinesweeperGrid {
         }
     }
 
+    public int getNumberOfRevealedTiles(){
+
+        int numberOfRevealedTiles = 0;
+
+        for(Tile[] i : board){
+            for (Tile j: i){
+                if(j.isRevealed()){
+                    numberOfRevealedTiles++;
+                }
+            }
+        }
+
+        return numberOfRevealedTiles;
+
+    }
 
     public void setFlag(int xCord, int yCord) {
 

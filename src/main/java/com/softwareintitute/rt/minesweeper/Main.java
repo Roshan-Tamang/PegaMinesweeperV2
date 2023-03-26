@@ -82,7 +82,7 @@ public class Main {
                             exit = true;
                             System.out.println("Game Over!");
                         }
-
+                        System.out.println("You scored: " +game.getScore());
                         System.out.println(board);
 
                     } else if (userChoice == 2) {

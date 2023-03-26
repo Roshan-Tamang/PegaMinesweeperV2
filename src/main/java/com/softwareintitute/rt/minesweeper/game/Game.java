@@ -2,6 +2,7 @@ package com.softwareintitute.rt.minesweeper.game;
 
 import com.softwareintitute.rt.minesweeper.exceptions.InvalidCoordinate;
 import com.softwareintitute.rt.minesweeper.game.data.MinesweeperGrid;
+import com.softwareintitute.rt.minesweeper.game.settings.Difficulty;
 import com.softwareintitute.rt.minesweeper.game.settings.Settings;
 
 public class Game {
@@ -69,6 +70,8 @@ public class Game {
                     isGameOver = true;
                 } else if (gameEndMessage.equals("Congratulations!")) {
                     isGameWon = true;
+                } else if (gameEndMessage.equals("Continue")) {
+                    updateScore();
                 }
 
             } else if (option.equals("Flag")) {
@@ -76,6 +79,18 @@ public class Game {
             }
         }
        return minesweeperGrid.toString();
+    }
+
+    private void updateScore() {
+
+        int numberOfRevealedTiles = minesweeperGrid.getNumberOfRevealedTiles();
+
+        score = (Settings.getGameDifficulty() == Difficulty.BEGINNER) ? (numberOfRevealedTiles) : (Settings.getGameDifficulty() == Difficulty.INTERMEDIATE) ? (2*numberOfRevealedTiles):(3*numberOfRevealedTiles);
+
+    }
+
+    public int getScore() {
+        return score;
     }
 
     public boolean checkIfGameIsWon(){
