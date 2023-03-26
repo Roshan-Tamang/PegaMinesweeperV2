@@ -19,5 +19,4 @@ class DifficultyTest {
         assertEquals(10,Difficulty.BEGINNER.getValue(),"The expected values should match");
     }
 
-
 }
