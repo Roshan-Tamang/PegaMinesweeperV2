@@ -1,4 +1,4 @@
-package com.softwareintitute.rt.minesweeper;
+package com.softwareintitute.rt.minesweeper.game.data;
 
 
 public class Tile {

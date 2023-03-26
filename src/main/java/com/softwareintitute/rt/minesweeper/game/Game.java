@@ -1,4 +1,8 @@
-package com.softwareintitute.rt.minesweeper;
+package com.softwareintitute.rt.minesweeper.game;
+
+import com.softwareintitute.rt.minesweeper.exceptions.InvalidCoordinate;
+import com.softwareintitute.rt.minesweeper.game.data.MinesweeperGrid;
+import com.softwareintitute.rt.minesweeper.game.settings.Settings;
 
 public class Game {
 
@@ -24,7 +28,7 @@ public class Game {
                 "0: Play Minesweeper" + System.lineSeparator() +
                 "1: Set board size" + System.lineSeparator() +
                 "2: Set difficulty level" + System.lineSeparator() +
-                "4: Exit";
+                "3: Exit";
 
         return mainMenu;
 

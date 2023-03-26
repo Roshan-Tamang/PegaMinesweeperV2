@@ -1,5 +1,11 @@
 package com.softwareintitute.rt.minesweeper;
 
+import com.softwareintitute.rt.minesweeper.exceptions.InvalidBoardSize;
+import com.softwareintitute.rt.minesweeper.exceptions.InvalidCoordinate;
+import com.softwareintitute.rt.minesweeper.exceptions.InvalidDifficultyLvl;
+import com.softwareintitute.rt.minesweeper.game.Game;
+import com.softwareintitute.rt.minesweeper.game.settings.Settings;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 

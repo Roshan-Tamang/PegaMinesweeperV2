@@ -1,4 +1,7 @@
-package com.softwareintitute.rt.minesweeper;
+package com.softwareintitute.rt.minesweeper.game.settings;
+
+import com.softwareintitute.rt.minesweeper.exceptions.InvalidBoardSize;
+import com.softwareintitute.rt.minesweeper.exceptions.InvalidDifficultyLvl;
 
 public class Settings {
 

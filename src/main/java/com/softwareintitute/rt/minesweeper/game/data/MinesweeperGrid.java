@@ -1,4 +1,6 @@
-package com.softwareintitute.rt.minesweeper;
+package com.softwareintitute.rt.minesweeper.game.data;
+
+import com.softwareintitute.rt.minesweeper.game.data.Tile;
 
 import java.util.*;
 
@@ -69,11 +71,25 @@ public class MinesweeperGrid {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < this.width; i++) {
+            sb.append("-");
+            sb.append(i);
+            if (i == this.width - 1) {
+                sb.append("-");
+                sb.append(System.lineSeparator());
+            }
+        }
+
         for (int i = 0; i < this.length; i++) {
             for (int j = 0; j < this.width; j++) {
+                sb.append("|");
                 sb.append(board[i][j]);
             }
-            sb.append("\n");
+            sb.append("|");
+            sb.append("-");
+            sb.append(i);
+            sb.append(System.lineSeparator());
         }
         return sb.toString();
     }
