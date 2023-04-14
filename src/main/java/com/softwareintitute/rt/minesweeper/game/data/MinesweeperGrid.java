@@ -71,6 +71,7 @@ public class MinesweeperGrid {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
+        //Does not look good when the length and width is over 10
         for (int i = 0; i < this.width; i++) {
             sb.append("-");
             sb.append(i);
@@ -135,6 +136,7 @@ public class MinesweeperGrid {
 
     private void revealAdditionalSquares(int xCord, int yCord) {
 
+        //Look into swapping Arraylist to set
 
         List<String> listOfCordsWithZeroNeighbourMines = new ArrayList<>();
 
@@ -157,6 +159,7 @@ public class MinesweeperGrid {
                     } else if (!board[x][y].isRevealed() && !board[x][y].isABomb() && !board[x][y].isFlagged()) {
                         board[x][y].revealTile();
                         if (board[x][y].getNumberOfNeighbouringMines() == 0) {
+                            //Does not work when the board length and width is over 10
                             listOfCordsWithZeroNeighbourMines.add(String.valueOf(x) + y);
                         }
                     }
