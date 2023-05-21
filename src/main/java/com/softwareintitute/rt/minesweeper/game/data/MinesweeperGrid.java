@@ -140,15 +140,14 @@ public class MinesweeperGrid {
 
         List<String> listOfCordsWithZeroNeighbourMines = new ArrayList<>();
 
-
-        listOfCordsWithZeroNeighbourMines.add(String.valueOf(xCord) + yCord);
-
+        listOfCordsWithZeroNeighbourMines.add(xCord + "," + yCord);
 
         for (int i = 0; i < listOfCordsWithZeroNeighbourMines.size(); i++) {
 
+            String cords[] = listOfCordsWithZeroNeighbourMines.get(i).split(",");
 
-            int currentX = Integer.parseInt(String.valueOf(listOfCordsWithZeroNeighbourMines.get(i).charAt(0)));
-            int currentY = Integer.parseInt(String.valueOf(listOfCordsWithZeroNeighbourMines.get(i).charAt(1)));
+            int currentX = Integer.parseInt(String.valueOf(cords[0]));
+            int currentY = Integer.parseInt(String.valueOf(cords[1]));
 
             for (int x = currentX - 1; x <= currentX + 1; x++) {
                 for (int y = currentY - 1; y <= currentY + 1; y++) {
@@ -159,8 +158,8 @@ public class MinesweeperGrid {
                     } else if (!board[x][y].isRevealed() && !board[x][y].isABomb() && !board[x][y].isFlagged()) {
                         board[x][y].revealTile();
                         if (board[x][y].getNumberOfNeighbouringMines() == 0) {
-                            //Does not work when the board length and width is over 10
-                            listOfCordsWithZeroNeighbourMines.add(String.valueOf(x) + y);
+                            
+                            listOfCordsWithZeroNeighbourMines.add(x + "," + y);
                         }
                     }
                 }
